@@ -22,6 +22,8 @@
 #include "libbb.h"
 #include "unarchive.h"
 
+#define ENABLE_DESKTOP 1
+
 enum {
 #if BB_BIG_ENDIAN
 	ZIP_FILEHEADER_MAGIC = 0x504b0304,
