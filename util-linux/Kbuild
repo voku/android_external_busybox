@@ -43,3 +43,4 @@ lib-$(CONFIG_SWAPONOFF)         += swaponoff.o
 lib-$(CONFIG_SWITCH_ROOT)       += switch_root.o
 lib-$(CONFIG_MKFS_EXT2)         += tune2fs.o
 lib-$(CONFIG_UMOUNT)            += umount.o
+lib-$(CONFIG_BLOCKDEV)		+= blockdev.o

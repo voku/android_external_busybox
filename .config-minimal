@@ -1,7 +1,7 @@
 #
 # Automatically generated make config: don't edit
-# Busybox version: 1.16.0android
-# Tue Mar 23 23:23:48 2010
+# Busybox version: 1.16.2android
+# Sun Oct  3 13:18:59 2010
 #
 CONFIG_HAVE_DOT_CONFIG=y
 
@@ -30,7 +30,7 @@ CONFIG_LONG_OPTS=y
 # CONFIG_FEATURE_DEVPTS is not set
 # CONFIG_FEATURE_CLEAN_UP is not set
 # CONFIG_FEATURE_PIDFILE is not set
-CONFIG_FEATURE_SUID=y
+# CONFIG_FEATURE_SUID is not set
 # CONFIG_FEATURE_SUID_CONFIG is not set
 # CONFIG_FEATURE_SUID_CONFIG_QUIET is not set
 # CONFIG_SELINUX is not set
@@ -405,7 +405,7 @@ CONFIG_TELINIT_PATH=""
 # CONFIG_USE_BB_PWD_GRP is not set
 # CONFIG_USE_BB_SHADOW is not set
 CONFIG_USE_BB_CRYPT=y
-# CONFIG_USE_BB_CRYPT_SHA is not set
+CONFIG_USE_BB_CRYPT_SHA=y
 # CONFIG_ADDGROUP is not set
 # CONFIG_FEATURE_ADDGROUP_LONG_OPTIONS is not set
 # CONFIG_FEATURE_ADDUSER_TO_GROUP is not set
@@ -477,6 +477,7 @@ CONFIG_DEFAULT_DEPMOD_FILE="modules.dep"
 # CONFIG_ACPID is not set
 # CONFIG_FEATURE_ACPID_COMPAT is not set
 # CONFIG_BLKID is not set
+CONFIG_BLOCKDEV=y
 CONFIG_DMESG=y
 # CONFIG_FEATURE_DMESG_PRETTY is not set
 # CONFIG_FBSET is not set

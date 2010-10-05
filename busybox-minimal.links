@@ -4,6 +4,7 @@
 /bin/awk
 /bin/basename
 /bin/bbconfig
+/sbin/blockdev
 /bin/bunzip2
 /bin/bzcat
 /bin/bzip2

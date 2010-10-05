@@ -1213,6 +1213,20 @@
 #define blkid_full_usage "\n\n" \
        "Print UUIDs of all filesystems"
 
+#define blockdev_trivial_usage "OPTION BLOCKDEV"
+#define blockdev_full_usage "\n\n"
+       "Options:" \
+     "\n        --setro         Set ro" \
+     "\n        --setrw         Set rw" \
+     "\n        --getro         Get ro" \
+     "\n        --getss         Get sector size" \
+     "\n        --getbsz        Get block size" \
+     "\n        --setbsz BYTES  Set block size" \
+     "\n        --getsize       Get device size in 512-byte sectors" \
+     "\n        --getsize64     Get device size in bytes" \
+     "\n        --flushbufs     Flush buffers" \
+     "\n        --rereadpt      Reread partition table"
+
 #define findfs_trivial_usage \
        "LABEL=label or UUID=uuid"
 #define findfs_full_usage "\n\n" \

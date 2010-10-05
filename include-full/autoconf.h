@@ -2,7 +2,7 @@
  * Automatically generated C config: don't edit
  * Busybox version: 1.16.2android
  */
-#define AUTOCONF_TIMESTAMP "2010-08-01 14:57:25 EDT"
+#define AUTOCONF_TIMESTAMP "2010-10-03 13:20:27 EDT"
 
 #define CONFIG_HAVE_DOT_CONFIG 1
 #define ENABLE_HAVE_DOT_CONFIG 1
@@ -88,10 +88,10 @@
 #define ENABLE_FEATURE_PIDFILE 0
 #define IF_FEATURE_PIDFILE(...)
 #define IF_NOT_FEATURE_PIDFILE(...) __VA_ARGS__
-#define CONFIG_FEATURE_SUID 1
-#define ENABLE_FEATURE_SUID 1
-#define IF_FEATURE_SUID(...) __VA_ARGS__
-#define IF_NOT_FEATURE_SUID(...)
+#undef CONFIG_FEATURE_SUID
+#define ENABLE_FEATURE_SUID 0
+#define IF_FEATURE_SUID(...)
+#define IF_NOT_FEATURE_SUID(...) __VA_ARGS__
 #undef CONFIG_FEATURE_SUID_CONFIG
 #define ENABLE_FEATURE_SUID_CONFIG 0
 #define IF_FEATURE_SUID_CONFIG(...)
@@ -1384,10 +1384,10 @@
 #define ENABLE_USE_BB_CRYPT 1
 #define IF_USE_BB_CRYPT(...) __VA_ARGS__
 #define IF_NOT_USE_BB_CRYPT(...)
-#undef CONFIG_USE_BB_CRYPT_SHA
-#define ENABLE_USE_BB_CRYPT_SHA 0
-#define IF_USE_BB_CRYPT_SHA(...)
-#define IF_NOT_USE_BB_CRYPT_SHA(...) __VA_ARGS__
+#define CONFIG_USE_BB_CRYPT_SHA 1
+#define ENABLE_USE_BB_CRYPT_SHA 1
+#define IF_USE_BB_CRYPT_SHA(...) __VA_ARGS__
+#define IF_NOT_USE_BB_CRYPT_SHA(...)
 #undef CONFIG_ADDGROUP
 #define ENABLE_ADDGROUP 0
 #define IF_ADDGROUP(...)
@@ -1624,6 +1624,10 @@
 #define ENABLE_BLKID 0
 #define IF_BLKID(...)
 #define IF_NOT_BLKID(...) __VA_ARGS__
+#undef CONFIG_BLOCKDEV
+#define ENABLE_BLOCKDEV 0
+#define IF_BLOCKDEV(...)
+#define IF_NOT_BLOCKDEV(...) __VA_ARGS__
 #define CONFIG_DMESG 1
 #define ENABLE_DMESG 1
 #define IF_DMESG(...) __VA_ARGS__

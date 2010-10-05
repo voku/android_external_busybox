@@ -36,6 +36,12 @@ config BLKID
 	  WARNING:
 	  With all submodules selected, it will add ~8k to busybox.
 
+config BLOCKDEV
+	bool "blockdev"
+	default n
+	help
+	  "Performs various operations on block devices."
+
 config DMESG
 	bool "dmesg"
 	default n
