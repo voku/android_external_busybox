@@ -849,6 +849,8 @@ static struct interfaces_file_t *read_interfaces(const char *filename)
 				if (strcmp(first_word, "up") != 0
 				 && strcmp(first_word, "down") != 0
 				 && strcmp(first_word, "pre-up") != 0
+				 && strcmp(first_word, "pre-down") != 0
+				 && strcmp(first_word, "post-up") != 0
 				 && strcmp(first_word, "post-down") != 0
 				) {
 					int i;
@@ -945,6 +947,8 @@ static void set_environ(struct interface_defn_t *iface, const char *mode)
 		if (strcmp(iface->option[i].name, "up") == 0
 		 || strcmp(iface->option[i].name, "down") == 0
 		 || strcmp(iface->option[i].name, "pre-up") == 0
+		 || strcmp(iface->option[i].name, "pre-down") == 0
+		 || strcmp(iface->option[i].name, "post-up") == 0
 		 || strcmp(iface->option[i].name, "post-down") == 0
 		) {
 			continue;
@@ -1015,6 +1019,7 @@ static int iface_up(struct interface_defn_t *iface)
 	if (!execute_all(iface, "pre-up")) return 0;
 	if (!iface->method->up(iface, doit)) return 0;
 	if (!execute_all(iface, "up")) return 0;
+	if (!execute_all(iface, "post-up")) return 0;
 	return 1;
 }
 
@@ -1022,6 +1027,7 @@ static int iface_down(struct interface_defn_t *iface)
 {
 	if (!iface->method->down(iface,check)) return -1;
 	set_environ(iface, "stop");
+	if (!execute_all(iface, "pre-down")) return 0;
 	if (!execute_all(iface, "down")) return 0;
 	if (!iface->method->down(iface, doit)) return 0;
 	if (!execute_all(iface, "post-down")) return 0;
