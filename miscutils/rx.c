@@ -199,6 +199,7 @@ static int receive(/*int read_fd, */int file_fd)
 		continue;
  error:
  timeout:
+		blockLength = 0;
 		errors++;
 		if (errors == MAXERRORS) {
 			/* Abort */
