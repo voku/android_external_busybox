@@ -1309,7 +1309,7 @@ static void send_cgi_and_exit(
 {
 	struct fd_pair fromCgi;  /* CGI -> httpd pipe */
 	struct fd_pair toCgi;    /* httpd -> CGI pipe */
-	char *script;
+	char *script, *last_slash;
 	int pid;
 
 	/* Make a copy. NB: caller guarantees:
@@ -1323,15 +1323,18 @@ static void send_cgi_and_exit(
 	 */
 
 	/* Check for [dirs/]script.cgi/PATH_INFO */
-	script = (char*)url;
+	last_slash = script = (char*)url;
 	while ((script = strchr(script + 1, '/')) != NULL) {
+		int dir;
 		*script = '\0';
-		if (!is_directory(url + 1, 1, NULL)) {
+		dir = is_directory(url + 1, /*followlinks:*/ 1, NULL);
+		*script = '/';
+		if (!dir) {
 			/* not directory, found script.cgi/PATH_INFO */
-			*script = '/';
 			break;
 		}
-		*script = '/'; /* is directory, find next '/' */
+		/* is directory, find next '/' */
+		last_slash = script;
 	}
 	setenv1("PATH_INFO", script);   /* set to /PATH_INFO or "" */
 	setenv1("REQUEST_METHOD", request);
@@ -1412,7 +1415,7 @@ static void send_cgi_and_exit(
 		log_and_exit();
 	}
 
-	if (!pid) {
+	if (pid == 0) {
 		/* Child process */
 		char *argv[3];
 
@@ -1428,7 +1431,7 @@ static void send_cgi_and_exit(
 		/* dup2(1, 2); */
 
 		/* Chdiring to script's dir */
-		script = strrchr(url, '/');
+		script = last_slash;
 		if (script != url) { /* paranoia */
 			*script = '\0';
 			if (chdir(url + 1) != 0) {
@@ -1885,7 +1888,7 @@ static void handle_incoming_and_exit(const len_and_sockaddr *fromAddr)
 	/* NB: urlcopy ptr is never changed after this */
 
 	/* Extract url args if present */
-	g_query = NULL;
+	/* g_query = NULL; - already is */
 	tptr = strchr(urlcopy, '?');
 	if (tptr) {
 		*tptr++ = '\0';
